@@ -1,0 +1,18 @@
+spring:
+  banner:
+    location: classpath:banner/employeesBanner.txt
+  application:
+    name: EMPLOYEE-SERVICE
+  data:
+    mongodb:
+      uri: mongodb+srv://educc0r:laia200619@sgiem-cluster.ghx2esb.mongodb.net/empsgiem
+#      uri: mongodb://localhost:27017/empsgiem
+
+eureka:
+  client:
+    service-url:
+      defaultZone : https://ms-sgiem-eureka.azurewebsites.net/eureka/
+
+
+server:
+  port: 8081

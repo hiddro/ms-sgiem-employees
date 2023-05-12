@@ -1,0 +1,237 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Employees Proyecto SGIEM - UTP
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/
+tags:
+  - name: employee
+    description: Everything about your Employees
+paths:
+  /employees:
+    get:
+      summary: List all employees
+      description: Return list Employees
+      operationId: listEmployees
+      tags:
+        - employee
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmployeeResponse'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmployeeResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a pet
+      description: Add a new Employee
+      operationId: registerEmployee
+      tags:
+        - employee
+      requestBody:
+        description: Create a new employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EmployeeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmployeeRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    EmployeeResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        names:
+          type: string
+          example: James
+        email:
+          type: string
+          example: james@gmail.com
+        dateOfbirth:
+          type: string
+          pattern: "^\\d{2}-\\d{2}-\\d{4}$"
+          example: "10-03-1993"
+        createAccount:
+          type: string
+          pattern: "^\\d{2}-\\d{2}-\\d{4}$"
+          example: "10-03-1993"
+        modifiedAccount:
+          type: string
+          pattern: "^\\d{2}-\\d{2}-\\d{4}$"
+          example: "10-03-1993"
+        surenames:
+          type: string
+          example: Gosling May
+        code:
+          type: string
+          example: FFFFFFFF
+        direction:
+          type: string
+          example: Avenida Arequipa N° 123
+        telephone:
+          type: string
+          example: 999888777
+        age:
+          type: string
+          example: 30
+        state:
+          type: string
+          example: INACTIVO
+          enum:
+            - INACTIVO
+            - ACTIVO
+        profile:
+          type: string
+          example: BACKEND DEVELOPER
+        isNew:
+          type: string
+          example: X
+        rol:
+          type: string
+          example: USER
+          enum:
+            - REHU
+            - USER
+            - ADMIN
+        cv:
+          type: object
+          properties:
+            id:
+              type: string
+              example: abcde12345
+            titulo:
+              type: string
+              example: Documento de Integridad
+            tipo:
+              type: string
+              example : .pdf
+            url:
+              type: string
+              example: https://localhost:8080/url-file
+        vacant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vacant'
+        document:
+          type: string
+          example: 12345abcde
+          description: Codigo del Documento
+    Vacant:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        name:
+          type: string
+          example: James
+        userCode:
+          type: string
+          example: FFFFFFFF
+          description: Codigo del Usuario que creo la Vacante
+        proceso:
+          type: string
+          example: INICIADO
+          enum:
+            - INICIADO
+            - EN PROCESO
+            - FINALIZADO
+        state:
+          type: string
+          example: INACTIVO
+          enum:
+            - INACTIVO
+            - ACTIVO
+    EmployeeRequest:
+      type: object
+      required:
+        - names
+        - email
+        - surenames
+        - code
+        - rol
+      properties:
+        names:
+          type: string
+          example: James
+        email:
+          type: string
+          example: james@gmail.com
+        surenames:
+          type: string
+          example: Gosling May
+        code:
+          type: string
+          example: FFFFFFFF
+        rol:
+          type: string
+          example: "USER"
+          enum:
+            - REHU
+            - USER
+            - ADMIN
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+          example: abcde12345
+        titulo:
+          type: string
+          example: Documento de Integridad
+        tipo:
+          type: string
+          example : .pdf
+        url:
+          type: string
+          example: https://localhost:8080/url-file
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
