@@ -38,7 +38,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     post:
-      summary: Create a pet
+      summary: Create a employee
       description: Add a new Employee
       operationId: registerEmployee
       tags:
@@ -56,6 +56,42 @@ paths:
             schema:
               $ref: '#/components/schemas/EmployeeRequest'
         required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /employees/assign/{titulo}/{code}:
+    put:
+      tags:
+        - employee
+      summary: Assign employee added rol
+      description: This can only be done by the logged in user.
+      operationId: assignEmployee
+      parameters:
+        - name: titulo
+          in: path
+          description: titulo that need to be added
+          required: true
+          schema:
+            type: string
+        - name: code
+          in: path
+          description: code user - employee
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -128,10 +164,6 @@ components:
         rol:
           type: string
           example: USER
-          enum:
-            - REHU
-            - USER
-            - ADMIN
         cv:
           type: object
           properties:
@@ -204,11 +236,7 @@ components:
           example: FFFFFFFF
         rol:
           type: string
-          example: "USER"
-          enum:
-            - REHU
-            - USER
-            - ADMIN
+          example: USER
     File:
       type: object
       properties:

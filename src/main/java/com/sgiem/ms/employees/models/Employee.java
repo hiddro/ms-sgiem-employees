@@ -45,6 +45,11 @@ public class Employee {
 
     @NotNull
     @NotEmpty
+    @Size(max = 40)
+    private String rol;
+
+    @NotNull
+    @NotEmpty
     @Size(max = 50)
     private String direction;
 

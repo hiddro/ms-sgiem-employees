@@ -49,9 +49,7 @@ public class EmployeeController implements EmployeeApi{
     @Override
     public Mono<ResponseEntity<EmployeeResponse>> registerEmployee(Mono<EmployeeRequest> employeeRequest, ServerWebExchange exchange) {
 
-//        return Mono.just(new ResponseEntity<>(EmployeeResponse.builder().build(), HttpStatus.OK));
-
-        return employeeRequest.flatMap(emp -> employeeService.save(Commons.convertToEntity(emp))
+        return employeeRequest.flatMap(emp -> employeeService.save(Commons.convertToEntity(emp)))
                 .map(Commons::convertToDtoRes)
                 .map(e -> ResponseEntity.created(URI.create(exchange.getRequest()
                                 .getURI()
@@ -60,6 +58,17 @@ public class EmployeeController implements EmployeeApi{
                                 .concat(e.getId())))
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(e)
-                ));
+                );
+    }
+
+    @Override
+    public Mono<ResponseEntity<EmployeeResponse>> assignEmployee(String titulo, String code, ServerWebExchange exchange) {
+
+        return employeeService.addRolEmployee(titulo, code)
+                .map(Commons::convertToDtoRes)
+                .map(res -> ResponseEntity.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(res)
+                );
     }
 }
