@@ -29,4 +29,15 @@ public class EmployeeServiceImpl extends CrudServiceImpl<Employee, String> imple
             return employeeRepositories.save(d);
         });
     }
+
+    @Override
+    public Mono<Employee> getEmployeeByEmail(String email) {
+        return employeeRepositories.findByEmail(email);
+    }
+
+    @Override
+    public Mono<Employee> updateEmployeeByEmail(String email, Employee employee) {
+        return employeeRepositories.findByEmail(email).flatMap(d -> employeeRepositories.save(employee))
+                .defaultIfEmpty(new Employee());
+    }
 }

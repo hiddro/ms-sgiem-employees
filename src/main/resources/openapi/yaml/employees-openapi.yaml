@@ -72,6 +72,78 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /employees/{email}:
+    get:
+      summary: Search employee for email
+      description: Return employee
+      operationId: getEmployeeEmail
+      tags:
+        - employee
+      parameters:
+        - name: email
+          in: path
+          description: email employee
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - employee
+      summary: Update data employee
+      description: This can only be done by the logged in user.
+      operationId: updateEmployee
+      parameters:
+        - name: email
+          in: path
+          description: email employee
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent password the user.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeRequestUpdate'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EmployeeRequestUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmployeeRequestUpdate'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /employees/assign/{titulo}/{code}:
     put:
       tags:
@@ -187,6 +259,60 @@ components:
           type: string
           example: 12345abcde
           description: Codigo del Documento
+    EmployeeRequestUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        names:
+          type: string
+          example: James
+        email:
+          type: string
+          example: james@gmail.com
+        dateOfbirth:
+          type: string
+          pattern: "^\\d{2}-\\d{2}-\\d{4}$"
+          example: "10-03-1993"
+        createAccount:
+          type: string
+          pattern: "^\\d{2}-\\d{2}-\\d{4}$"
+          example: "10-03-1993"
+        modifiedAccount:
+          type: string
+          pattern: "^\\d{2}-\\d{2}-\\d{4}$"
+          example: "10-03-1993"
+        surenames:
+          type: string
+          example: Gosling May
+        code:
+          type: string
+          example: FFFFFFFF
+        direction:
+          type: string
+          example: Avenida Arequipa N° 123
+        telephone:
+          type: string
+          example: 999888777
+        age:
+          type: string
+          example: 30
+        state:
+          type: string
+          example: INACTIVO
+          enum:
+            - INACTIVO
+            - ACTIVO
+        profile:
+          type: string
+          example: BACKEND DEVELOPER
+        isNew:
+          type: string
+          example: X
+        rol:
+          type: string
+          example: USER
     Vacant:
       type: object
       properties:

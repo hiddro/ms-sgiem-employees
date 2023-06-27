@@ -2,6 +2,7 @@ package com.sgiem.ms.employees.utils.commons;
 
 import com.sgiem.ms.employees.config.ModelMapperConfig;
 import com.sgiem.ms.employees.dto.EmployeeRequest;
+import com.sgiem.ms.employees.dto.EmployeeRequestUpdate;
 import com.sgiem.ms.employees.dto.EmployeeResponse;
 import com.sgiem.ms.employees.models.Employee;
 import org.apache.el.parser.ParseException;
@@ -13,6 +14,12 @@ public class Commons {
     public static final  ModelMapper modelMapper = new ModelMapper();
 
     public static Employee convertToEntity(EmployeeRequest empReq) {
+        Employee empEnt = modelMapper.map(empReq, Employee.class);
+
+        return empEnt;
+    }
+
+    public static Employee convertUpdateToEntity(EmployeeRequestUpdate empReq) {
         Employee empEnt = modelMapper.map(empReq, Employee.class);
 
         return empEnt;

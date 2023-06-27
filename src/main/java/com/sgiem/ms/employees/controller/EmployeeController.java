@@ -2,6 +2,7 @@ package com.sgiem.ms.employees.controller;
 
 import com.sgiem.ms.employees.api.v1.EmployeeApi;
 import com.sgiem.ms.employees.dto.EmployeeRequest;
+import com.sgiem.ms.employees.dto.EmployeeRequestUpdate;
 import com.sgiem.ms.employees.dto.EmployeeResponse;
 import com.sgiem.ms.employees.models.Employee;
 import com.sgiem.ms.employees.services.EmployeeService;
@@ -24,6 +25,7 @@ import java.net.URI;
 import java.util.Comparator;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/sgiem")
 //@Slf4j
 public class EmployeeController implements EmployeeApi{
@@ -44,6 +46,26 @@ public class EmployeeController implements EmployeeApi{
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(employeeFlux)
         ).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public Mono<ResponseEntity<EmployeeResponse>> getEmployeeEmail(String email, ServerWebExchange exchange) {
+        return employeeService.getEmployeeByEmail(email)
+                .map(Commons::convertToDtoRes)
+                .map(e -> ResponseEntity.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(e)
+                ).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public Mono<ResponseEntity<EmployeeResponse>> updateEmployee(String email, Mono<EmployeeRequestUpdate> employeeRequestUpdate, ServerWebExchange exchange) {
+        return employeeRequestUpdate.flatMap(emp -> employeeService.updateEmployeeByEmail(email, Commons.convertUpdateToEntity(emp)))
+                .map(Commons::convertToDtoRes)
+                .map(e -> ResponseEntity.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(e)
+                ).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @Override

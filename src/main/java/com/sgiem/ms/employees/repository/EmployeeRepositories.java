@@ -7,4 +7,6 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface EmployeeRepositories extends GenericRepositories<Employee, String>{
     Mono<Employee> findByCode(String code);
+
+    Mono<Employee> findByEmail(String email);
 }

@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @AllArgsConstructor
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @ToString
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Document(collection = "employees")
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -32,6 +34,24 @@ public class Employee {
     @NotEmpty
     @Size(max = 30)
     private String email;
+
+    @NotNull
+    @NotEmpty
+    @Size(max = 30)
+    @Pattern(regexp = "^\\d{2}-\\d{2}-\\d{4}$", message = "Formato de fecha inválido. Utilice el formato dd-MM-yyyy")
+    private String dateOfbirth;
+
+    @NotNull
+    @NotEmpty
+    @Size(max = 30)
+    @Pattern(regexp = "^\\d{2}-\\d{2}-\\d{4}$", message = "Formato de fecha inválido. Utilice el formato dd-MM-yyyy")
+    private String createAccount;
+
+    @NotNull
+    @NotEmpty
+    @Size(max = 30)
+    @Pattern(regexp = "^\\d{2}-\\d{2}-\\d{4}$", message = "Formato de fecha inválido. Utilice el formato dd-MM-yyyy")
+    private String modifiedAccount;
 
     @NotNull
     @NotEmpty
@@ -59,5 +79,20 @@ public class Employee {
 
     @NotNull
     private String age;
+
+    @NotNull
+    @NotEmpty
+    @Size(max = 50)
+    private String state;
+
+    @NotNull
+    @NotEmpty
+    @Size(max = 50)
+    private String profile;
+
+    @NotNull
+    @NotEmpty
+    @Size(max = 50)
+    private String isNew;
 
 }
