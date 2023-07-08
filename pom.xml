@@ -23,6 +23,7 @@
 		<spring-cloud.version>2022.0.1</spring-cloud.version>
 		<sonar.organization>sgiem</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.projectKey>sgiem-microservice-employees</sonar.projectKey>
 	</properties>
 	<dependencies>
 		<dependency>
