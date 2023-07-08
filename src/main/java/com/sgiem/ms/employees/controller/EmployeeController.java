@@ -4,7 +4,6 @@ import com.sgiem.ms.employees.api.v1.EmployeeApi;
 import com.sgiem.ms.employees.dto.EmployeeRequest;
 import com.sgiem.ms.employees.dto.EmployeeRequestUpdate;
 import com.sgiem.ms.employees.dto.EmployeeResponse;
-import com.sgiem.ms.employees.models.Employee;
 import com.sgiem.ms.employees.services.EmployeeService;
 import com.sgiem.ms.employees.utils.commons.Commons;
 import lombok.extern.slf4j.Slf4j;
