@@ -23,9 +23,9 @@ public class EmployeeServiceImpl extends CrudServiceImpl<Employee, String> imple
 
     @Override
     public Mono<Employee> addRolEmployee(String titulo, String code) {
-        log.info("Iniciando registor de rol");
+        log.info("Asignando Rol");
         return employeeRepositories.findByCode(code).flatMap(d -> {
-            d.setRol(titulo);
+            d.setRol(String.join(",", d.getRol(), titulo));
             return employeeRepositories.save(d);
         });
     }

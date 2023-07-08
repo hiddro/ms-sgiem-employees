@@ -73,11 +73,7 @@ public class EmployeeController implements EmployeeApi{
 
         return employeeRequest.flatMap(emp -> employeeService.save(Commons.convertToEntity(emp)))
                 .map(Commons::convertToDtoRes)
-                .map(e -> ResponseEntity.created(URI.create(exchange.getRequest()
-                                .getURI()
-                                .toString()
-                                .concat("/")
-                                .concat(e.getId())))
+                .map(e -> ResponseEntity.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(e)
                 );
