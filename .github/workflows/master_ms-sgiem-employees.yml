@@ -44,7 +44,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sgiem-microservice-employees
+          SONAR_ORGANIZATION: sgiem
+          SONAR_PROJECT_KEY: ms-sgiem-employees
+        run: |
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=2ab14aebffb504daf6593b90309fcfc2d8006c0b \
+            -Dsonar.organization=sgiem \
+            -Dsonar.projectKey=ms-sgiem-employees
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
