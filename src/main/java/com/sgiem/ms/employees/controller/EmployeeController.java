@@ -7,37 +7,26 @@ import com.sgiem.ms.employees.dto.EmployeeResponse;
 import com.sgiem.ms.employees.services.EmployeeService;
 import com.sgiem.ms.employees.utils.commons.Commons;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.Comparator;
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/sgiem")
-//@Slf4j
+@Slf4j
 public class EmployeeController implements EmployeeApi{
-
-    private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
-
 
     @Autowired
     private EmployeeService employeeService;
 
     @Override
     public Mono<ResponseEntity<Flux<EmployeeResponse>>> listEmployees(ServerWebExchange exchange) {
-        logger.info("LIST ALL EMPLOYEES V2");
+        log.info("LIST ALL EMPLOYEES V2");
         Flux<EmployeeResponse> employeeFlux = employeeService.findAll()
                 .map(Commons::convertToDtoRes);
 
