@@ -16,7 +16,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@CrossOrigin(origins = "https://ms-sgiem-employees.azurewebsites.net")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/sgiem")
 @Slf4j
 public class EmployeeController implements EmployeeApi{
