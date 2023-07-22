@@ -111,4 +111,8 @@ public class Employee {
     @Size(min = 8, max = 8)
     private String dni;
 
+    @NotNull
+    @Size(min = 8, max = 100)
+    private String cv;
+
 }
