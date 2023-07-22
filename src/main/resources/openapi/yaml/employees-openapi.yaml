@@ -236,6 +236,18 @@ components:
         rol:
           type: string
           example: USER
+        nacionalidad:
+          type: string
+          example: Peruana
+        genero:
+          type: string
+          example: Masculino
+        estadocivil:
+          type: string
+          example: Casado
+        dni:
+          type: string
+          example: 73938508
         cv:
           type: object
           properties:
