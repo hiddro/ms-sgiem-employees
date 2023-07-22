@@ -95,4 +95,20 @@ public class Employee {
     @Size(max = 50)
     private String isNew;
 
+    @NotNull
+    @Size(min = 9, max = 30)
+    private String nacionalidad;
+
+    @NotNull
+    @Size(min = 9, max = 30)
+    private String genero;
+
+    @NotNull
+    @Size(min = 9, max = 30)
+    private String estadocivil;
+
+    @NotNull
+    @Size(min = 8, max = 8)
+    private String dni;
+
 }
