@@ -249,11 +249,8 @@ components:
           type: string
           example: 73938508
         cv:
-          type: object
-          properties:
-            id:
-              type: string
-              example: abcde12345
+          type: string
+          example: "https://..."
         vacant:
           type: array
           items:
@@ -328,6 +325,9 @@ components:
         dni:
           type: string
           example: 73938508
+        cv:
+          type: string
+          example: "https://..."
     Vacant:
       type: object
       properties:
