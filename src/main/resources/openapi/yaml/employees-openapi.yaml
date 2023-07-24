@@ -249,8 +249,26 @@ components:
           type: string
           example: 73938508
         cv:
-          type: string
-          example: "https://..."
+          type: object
+          properties:
+            id:
+              type: string
+              example: abcde12345
+            titulo:
+              type: string
+              example: Documento de Integridad
+            tipoFile:
+              type: string
+              example : .pdf
+            code:
+              type: string
+              example: FFFFFFFF
+            tipoDocumento:
+              type: string
+              example: "cv | documento"
+            url:
+              type: string
+              example: https://.....
         vacant:
           type: array
           items:
@@ -326,8 +344,26 @@ components:
           type: string
           example: 73938508
         cv:
-          type: string
-          example: "https://..."
+          type: object
+          properties:
+            id:
+              type: string
+              example: abcde12345
+            titulo:
+              type: string
+              example: Documento de Integridad
+            tipoFile:
+              type: string
+              example : .pdf
+            code:
+              type: string
+              example: FFFFFFFF
+            tipoDocumento:
+              type: string
+              example: "cv | documento"
+            url:
+              type: string
+              example: https://.....
     Vacant:
       type: object
       properties:
@@ -378,21 +414,6 @@ components:
         rol:
           type: string
           example: USER
-    File:
-      type: object
-      properties:
-        id:
-          type: string
-          example: abcde12345
-        titulo:
-          type: string
-          example: Documento de Integridad
-        tipo:
-          type: string
-          example : .pdf
-        url:
-          type: string
-          example: https://localhost:8080/url-file
     Error:
       type: object
       required:
