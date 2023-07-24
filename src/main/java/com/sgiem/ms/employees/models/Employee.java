@@ -113,6 +113,6 @@ public class Employee {
 
     @NotNull
     @Size(min = 8, max = 100)
-    private String cv;
+    private File cv;
 
 }
